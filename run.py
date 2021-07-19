@@ -13,21 +13,21 @@ def play(word):
     guessed_letters = []
     guessed_words = []
     tries = 6
-    print("Let's play Hangman!")
+    print("Let's play a game!")
     print(display_hangman(tries))
     print(word_completion)
     print("\n")
     while not guessed and tries > 0:
-        guess = input("Please guess a letter or word: ").upper()
+        guess = input("Please guess a character or a team").upper()
         if len(guess) == 1 and guess.isalnum():
             if guess in guessed_letters:
-                print("You already guessed the letter", guess)
+                print("You already guessed that character", guess)
             elif guess not in word:
-                print(guess, "is not in the word.")
+                print(guess, "is not a correct guess.")
                 tries -= 1
                 guessed_letters.append(guess)
             else:
-                print("Good job,", guess, "is in the word!")
+                print("Well done,", guess, "it's a correct guess!")
                 guessed_letters.append(guess)
                 word_as_list = list(word_completion)
                 indices = [i for i, letter in enumerate(word) if letter == guess]
@@ -38,9 +38,9 @@ def play(word):
                     guessed = True
         elif len(guess) == len(word) and guess.isalnum():
             if guess in guessed_words:
-                print("You already guessed the word", guess)
+                print("You already tried that character", guess)
             elif guess != word:
-                print(guess, "is not the word.")
+                print(guess, "is not the team.")
                 tries -= 1
                 guessed_words.append(guess)
             else:
@@ -52,9 +52,9 @@ def play(word):
         print(word_completion)
         print("\n")
     if guessed:
-        print("Congrats, you guessed the word! You win!")
+        print("Congrats, you got the right team! You win!")
     else:
-        print("Sorry, you ran out of tries. The word was " + word + ". Maybe next time!")
+        print("Sorry, you ran out of tries. The team was " + word + ". Maybe next time!")
 
 
 def display_hangman(tries):
