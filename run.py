@@ -2,33 +2,33 @@ import random
 from teams import teams_list
 
 
-def get_word():
+def get_random_team():
     word = random.choice(teams_list)
     return word.upper()
 
 
-def play(word):
+def play_game(word):
     word_completion = "_" * len(word)
     guessed = False
-    guessed_letters = []
-    guessed_words = []
+    guessed_character = []
+    guessed_teams = []
     tries = 6
     print("Let's play a game!")
     print(display_hangman(tries))
     print(word_completion)
     print("\n")
     while not guessed and tries > 0:
-        guess = input("Please guess a character or a team").upper()
+        guess = input("Please guess a character or a team: ").upper()
         if len(guess) == 1 and guess.isalnum():
-            if guess in guessed_letters:
+            if guess in guessed_character:
                 print("You already guessed that character", guess)
             elif guess not in word:
                 print(guess, "is not a correct guess.")
                 tries -= 1
-                guessed_letters.append(guess)
+                guessed_character.append(guess)
             else:
                 print("Well done,", guess, "it's a correct guess!")
-                guessed_letters.append(guess)
+                guessed_character.append(guess)
                 word_as_list = list(word_completion)
                 indices = [i for i, letter in enumerate(word) if letter == guess]
                 for index in indices:
@@ -37,12 +37,12 @@ def play(word):
                 if "_" not in word_completion:
                     guessed = True
         elif len(guess) == len(word) and guess.isalnum():
-            if guess in guessed_words:
+            if guess in guessed_teams:
                 print("You already tried that character", guess)
             elif guess != word:
                 print(guess, "is not the team.")
                 tries -= 1
-                guessed_words.append(guess)
+                guessed_teams.append(guess)
             else:
                 guessed = True
                 word_completion = word
@@ -133,11 +133,11 @@ def display_hangman(tries):
 
 
 def main():
-    word = get_word()
-    play(word)
+    word = get_random_team()
+    play_game(word)
     while input("Play Again? (Y/N) ").upper() == "Y":
-        word = get_word()
-        play(word)
+        word = get_random_team()
+        play_game(word)
 
 
 if __name__ == "__main__":
