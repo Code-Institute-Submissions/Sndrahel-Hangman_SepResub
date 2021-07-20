@@ -3,17 +3,17 @@ from teams import teams_list
 
 
 def get_random_team():
-    word = random.choice(teams_list)
-    return word.upper()
+    secret_team = random.choice(teams_list)
+    return secret_team.upper()
 
 
-def play_game(word):
-    word_completion = "_" * len(word)
+def play_game(secret_team):
+    word_completion = "_" * len(secret_team)
     guessed = False
     guessed_character = []
     guessed_teams = []
     used_letters = set()  #
-    lives = 6
+    lives = 9
 
     print("Let's play a game!")
     print(display_hangman(lives))
@@ -26,7 +26,7 @@ def play_game(word):
         if len(guess) == 1 and guess.isalnum():
             if guess in guessed_character:
                 print("You already guessed that character", guess)
-            elif guess not in word:
+            elif guess not in secret_team:
                 print(guess, "is not a correct guess.")
                 lives -= 1
                 guessed_character.append(guess)
@@ -34,22 +34,22 @@ def play_game(word):
                 print("Well done,", guess, "it's a correct guess!")
                 guessed_character.append(guess)
                 word_as_list = list(word_completion)
-                indices = [i for i, letter in enumerate(word) if letter == guess]
+                indices = [i for i, letter in enumerate(secret_team) if letter == guess]
                 for index in indices:
                     word_as_list[index] = guess
                 word_completion = "".join(word_as_list)
                 if "_" not in word_completion:
                     guessed = True
-        elif len(guess) == len(word) and guess.isalnum():
+        elif len(guess) == len(secret_team) and guess.isalnum():
             if guess in guessed_teams:
                 print("You already tried that character", guess)
-            elif guess != word:
+            elif guess != secret_team:
                 print(guess, "is not the team.")
                 lives -= 1
                 guessed_teams.append(guess)
             else:
                 guessed = True
-                word_completion = word
+                word_completion = secret_team
         else:
             print("Not a valid guess.")
         print(display_hangman(lives))
@@ -58,90 +58,120 @@ def play_game(word):
     if guessed:
         print("Congrats, you got the right team! You win!")
     else:
-        print("Sorry, you ran out of lives. The team was " + word + ". Maybe next time!")
+        print("Sorry, you ran out of lives. The team was " + secret_team + ". Maybe next time!")
 
 
 def display_hangman(lives):
-    stages = [  # final state: head, torso, both arms, and both legs
-                """
-                   --------
-                   |      |
-                   |      O
-                   |     \\|/
-                   |      |
-                   |     / \\
-                   -
-                """,
-                # head, torso, both arms, and one leg
-                """
-                   --------
-                   |      |
-                   |      O
-                   |     \\|/
-                   |      |
-                   |     /
-                   -
-                """,
-                # head, torso, and both arms
-                """
-                   --------
-                   |      |
-                   |      O
-                   |     \\|/
-                   |      |
-                   |
-                   -
-                """,
-                # head, torso, and one arm
-                """
-                   --------
-                   |      |
-                   |      O
-                   |     \\|
-                   |      |
-                   |
-                   -
-                """,
-                # head and torso
-                """
-                   --------
-                   |      |
-                   |      O
-                   |      |
-                   |      |
-                   |
-                   -
-                """,
-                # head
-                """
-                   --------
-                   |      |
-                   |      O
-                   |
-                   |
-                   |
-                   -
-                """,
-                # initial empty state
-                """
-                   --------
-                   |      |
-                   |
-                   |
-                   |
-                   |
-                   -
-                """
+    stages = [  # stage 10, final state: Game over
+        """
+           --------
+           |      |
+           |      O
+           |    \\|/
+           |      |
+           |     / \\
+        ___|___
+        """,
+        # stage 9
+        """
+           --------
+           |      |
+           |      O
+           |    \\|/
+           |      |
+           |     /
+        ___|___
+        """,
+        # stage 8
+        """
+           --------
+           |      |
+           |      O
+           |    \\|/
+           |      |
+           |
+        ___|___
+        """,
+        # stage 7
+        """
+           --------
+           |      |
+           |      O
+           |    \\|
+           |      |
+           |
+        ___|___
+        """,
+        # stage 6
+        """
+           --------
+           |      |
+           |      O
+           |      |
+           |      |
+           |
+        ___|___
+        """,
+        # 5, head
+        """
+           --------
+           |      |
+           |      O
+           |
+           |
+           |
+        ___|___
+        """,
+        # 4,
+        """
+           --------
+           |      |
+           |
+           |
+           |
+           |
+        ___|___
+        """,
+        # 3,
+        """
+           --------
+           |
+           |
+           |
+           |
+           |
+        ___|___
+        """,
+        # 2,
+        """
+
+           |
+           |
+           |
+           |
+           |
+        ___|___
+        """,
+        # 1, initial empty state
+        """
+
+
+
+
+
+
+        ___ ___
+        """
     ]
     return stages[lives]
 
 
 def main():
-    word = get_random_team()
-    play_game(word)
+    secret_team = get_random_team()
+    play_game(secret_team)
     while input("Play Again? (Y/N) ").upper() == "Y":
-        word = get_random_team()
-        play_game(word)
+        secret_team = get_random_team()
+        play_game(secret_team)
 
 
 if __name__ == "__main__":
