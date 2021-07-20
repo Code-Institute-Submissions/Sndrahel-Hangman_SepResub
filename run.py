@@ -6,10 +6,6 @@ games_won = 0
 games_lost = 0
 
 
-# List to hold guessed letters that are not found in secret_team
-wrong_letters = []
-
-
 def score():
     print(" ")
     print("  Score")
@@ -26,11 +22,10 @@ def play_game(secret_team):
     guess_completion = "_" * len(secret_team)
     guessed = False
     guessed_character = []
-    guessed_teams = []
     lives = 9
     score()
 
-    print("Let's play a game!")
+    print("Welcome to Sport Teams Hangman. Try and guess the team before the man is hung! Let's play a game!")
     print(display_hangman(lives))
     print(guess_completion)
     print("\n")
@@ -54,16 +49,6 @@ def play_game(secret_team):
                 guess_completion = "".join(word_as_list)
                 if "_" not in guess_completion:
                     guessed = True
-        elif len(guess) == len(secret_team) and guess.isalnum():
-            if guess in guessed_teams:
-                print("You already tried that character", guess)
-            elif guess != secret_team:
-                print(guess, "is not the team.")
-                lives -= 1
-                guessed_teams.append(guess)
-            else:
-                guessed = True
-                guess_completion = secret_team
         else:
             print("Not a valid guess.")
         print(display_hangman(lives))
