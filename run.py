@@ -67,7 +67,7 @@ def play_game(secret_team):
 def display_hangman(lives):
     stages = [  # stage 10, final state: Game over
         """
-           --------
+           x------x
            |      |
            |      O
            |     \\|/
@@ -77,7 +77,7 @@ def display_hangman(lives):
         """,
         # stage 9
         """
-           --------
+           x------x
            |      |
            |      O
            |     \\|/
@@ -87,7 +87,7 @@ def display_hangman(lives):
         """,
         # stage 8
         """
-           --------
+           x------x
            |      |
            |      O
            |     \\|/
@@ -97,7 +97,7 @@ def display_hangman(lives):
         """,
         # stage 7
         """
-           --------
+           x------x
            |      |
            |      O
            |     \\|
@@ -107,7 +107,7 @@ def display_hangman(lives):
         """,
         # stage 6
         """
-           --------
+           x------x
            |      |
            |      O
            |      |
@@ -115,9 +115,9 @@ def display_hangman(lives):
            |
         ___|___
         """,
-        # 5, head
+        # stage 5
         """
-           --------
+           x------x
            |      |
            |      O
            |
@@ -125,9 +125,9 @@ def display_hangman(lives):
            |
         ___|___
         """,
-        # 4,
+        # stage 4
         """
-           --------
+           x------x
            |      |
            |
            |
@@ -135,9 +135,9 @@ def display_hangman(lives):
            |
         ___|___
         """,
-        # 3,
+        # stage 3
         """
-           --------
+           x------x
            |
            |
            |
@@ -145,7 +145,7 @@ def display_hangman(lives):
            |
         ___|___
         """,
-        # 2,
+        # stage 2
         """
 
            |
@@ -155,7 +155,7 @@ def display_hangman(lives):
            |
         ___|___
         """,
-        # 1, initial empty state
+        # stage 1, initial state
         """
 
 
