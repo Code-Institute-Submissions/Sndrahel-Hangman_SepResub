@@ -31,7 +31,7 @@ def play_game(secret_team):
     print("\n")
 
     while not guessed and lives > 0:
-        guess = input("Please guess a character or a team: ").upper()
+        guess = input("Please guess a character: ").upper()
         if len(guess) == 1 and guess.isalnum():
             if guess in guessed_character:
                 print("You already guessed that character", guess)
@@ -57,7 +57,7 @@ def play_game(secret_team):
     if guessed:
         global games_won
         games_won += 1
-        print("Congrats, you got the right team! You win!")
+        print("Congrats, you got the right team! You are awesome!")
     else:
         global games_lost
         games_lost += 1
