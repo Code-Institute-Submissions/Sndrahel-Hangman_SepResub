@@ -28,6 +28,7 @@ def play_game(secret_team):
     guessed_character = []
     guessed_teams = []
     lives = 9
+    score()
 
     print("Let's play a game!")
     print(display_hangman(lives))
@@ -40,7 +41,7 @@ def play_game(secret_team):
             if guess in guessed_character:
                 print("You already guessed that character", guess)
             elif guess not in secret_team:
-                print(guess, "is not the correct team.")
+                print(guess, "is not a correct guess.")
                 lives -= 1
                 guessed_character.append(guess)
             else:
@@ -69,8 +70,12 @@ def play_game(secret_team):
         print(guess_completion)
         print("\n")
     if guessed:
+        global games_won
+        games_won += 1
         print("Congrats, you got the right team! You win!")
     else:
+        global games_lost
+        games_lost += 1
         print("Sorry, you ran out of lives. The team was " + secret_team + ". Maybe next time!")
 
 
@@ -80,7 +85,7 @@ def display_hangman(lives):
            --------
            |      |
            |      O
-           |    \\|/
+           |     \\|/
            |      |
            |     / \\
         ___|___
@@ -90,7 +95,7 @@ def display_hangman(lives):
            --------
            |      |
            |      O
-           |    \\|/
+           |     \\|/
            |      |
            |     /
         ___|___
@@ -100,7 +105,7 @@ def display_hangman(lives):
            --------
            |      |
            |      O
-           |    \\|/
+           |     \\|/
            |      |
            |
         ___|___
@@ -110,7 +115,7 @@ def display_hangman(lives):
            --------
            |      |
            |      O
-           |    \\|
+           |     \\|
            |      |
            |
         ___|___
