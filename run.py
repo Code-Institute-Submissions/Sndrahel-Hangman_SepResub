@@ -1,6 +1,21 @@
 import random
 from teams import teams_list
 
+#  Variables to hold score (games won and lost)
+games_won = 0
+games_lost = 0
+
+
+# List to hold guessed letters that are not found in secret_team
+wrong_letters = []
+
+
+def score():
+    print(" ")
+    print("  Score")
+    print("  -----")
+    print("  Won: " + str(games_won) + "    Lost: " + str(games_lost))
+
 
 def get_random_team():
     secret_team = random.choice(teams_list)
@@ -8,7 +23,7 @@ def get_random_team():
 
 
 def play_game(secret_team):
-    word_completion = "_" * len(secret_team)
+    guess_completion = "_" * len(secret_team)
     guessed = False
     guessed_character = []
     guessed_teams = []
@@ -16,7 +31,7 @@ def play_game(secret_team):
 
     print("Let's play a game!")
     print(display_hangman(lives))
-    print(word_completion)
+    print(guess_completion)
     print("\n")
 
     while not guessed and lives > 0:
@@ -25,18 +40,18 @@ def play_game(secret_team):
             if guess in guessed_character:
                 print("You already guessed that character", guess)
             elif guess not in secret_team:
-                print(guess, "is not a correct guess.")
+                print(guess, "is not the correct team.")
                 lives -= 1
                 guessed_character.append(guess)
             else:
                 print("Well done,", guess, "it's a correct guess!")
                 guessed_character.append(guess)
-                word_as_list = list(word_completion)
+                word_as_list = list(guess_completion)
                 indices = [i for i, letter in enumerate(secret_team) if letter == guess]
                 for index in indices:
                     word_as_list[index] = guess
-                word_completion = "".join(word_as_list)
-                if "_" not in word_completion:
+                guess_completion = "".join(word_as_list)
+                if "_" not in guess_completion:
                     guessed = True
         elif len(guess) == len(secret_team) and guess.isalnum():
             if guess in guessed_teams:
@@ -47,11 +62,11 @@ def play_game(secret_team):
                 guessed_teams.append(guess)
             else:
                 guessed = True
-                word_completion = secret_team
+                guess_completion = secret_team
         else:
             print("Not a valid guess.")
         print(display_hangman(lives))
-        print(word_completion)
+        print(guess_completion)
         print("\n")
     if guessed:
         print("Congrats, you got the right team! You win!")
