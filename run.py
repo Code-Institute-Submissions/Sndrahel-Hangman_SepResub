@@ -12,13 +12,11 @@ def play_game(secret_team):
     guessed = False
     guessed_character = []
     guessed_teams = []
-    used_letters = set()  #
     lives = 9
 
     print("Let's play a game!")
     print(display_hangman(lives))
     print(word_completion)
-    print('You have used these letters: ', ' '.join(used_letters))  #
     print("\n")
 
     while not guessed and lives > 0:
