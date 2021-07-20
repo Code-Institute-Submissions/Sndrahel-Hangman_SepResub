@@ -6,7 +6,7 @@ games_won = 0
 games_lost = 0
 
 
-def score():
+def show_current_score():
     print(" ")
     print("  Score")
     print("  -----")
@@ -22,28 +22,28 @@ def play_game(secret_team):
     guess_completion = "_" * len(secret_team)
     guessed = False
     guessed_character = []
-    lives = 9
-    score()
+    game_life = 9
+    show_current_score()
 
     print("Welcome to Sport Teams Hangman. Try and guess the team before the man is hung! Let's play a game!")
-    print(display_hangman(lives))
+    print(display_hangman(game_life))
     print(guess_completion)
     print("\n")
 
-    while not guessed and lives > 0:
+    while not guessed and game_life > 0:
         guess = input("Please guess a character: ").upper()
         if len(guess) == 1 and guess.isalnum():
             if guess in guessed_character:
                 print("You already guessed that character", guess)
             elif guess not in secret_team:
                 print(guess, "is not a correct guess.")
-                lives -= 1
+                game_life -= 1
                 guessed_character.append(guess)
             else:
                 print("Well done,", guess, "it's a correct guess!")
                 guessed_character.append(guess)
                 word_as_list = list(guess_completion)
-                indices = [i for i, letter in enumerate(secret_team) if letter == guess]
+                indices = [i for i, letter in enumerate(secret_team) if letter == guess]  # or letter == '_'
                 for index in indices:
                     word_as_list[index] = guess
                 guess_completion = "".join(word_as_list)
@@ -51,7 +51,7 @@ def play_game(secret_team):
                     guessed = True
         else:
             print("Not a valid guess.")
-        print(display_hangman(lives))
+        print(display_hangman(game_life))
         print(guess_completion)
         print("\n")
     if guessed:
@@ -64,7 +64,7 @@ def play_game(secret_team):
         print("Sorry, you ran out of lives. The team was " + secret_team + ". Maybe next time!")
 
 
-def display_hangman(lives):
+def display_hangman(game_life):
     stages = [  # stage 10, final state: Game over
         """
            x------x
@@ -166,7 +166,7 @@ def display_hangman(lives):
         ___ ___
         """
     ]
-    return stages[lives]
+    return stages[game_life]
 
 
 def main():
