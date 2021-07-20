@@ -12,19 +12,23 @@ def play_game(word):
     guessed = False
     guessed_character = []
     guessed_teams = []
-    tries = 6
+    used_letters = set()  #
+    lives = 6
+
     print("Let's play a game!")
-    print(display_hangman(tries))
+    print(display_hangman(lives))
     print(word_completion)
+    print('You have used these letters: ', ' '.join(used_letters))  #
     print("\n")
-    while not guessed and tries > 0:
+
+    while not guessed and lives > 0:
         guess = input("Please guess a character or a team: ").upper()
         if len(guess) == 1 and guess.isalnum():
             if guess in guessed_character:
                 print("You already guessed that character", guess)
             elif guess not in word:
                 print(guess, "is not a correct guess.")
-                tries -= 1
+                lives -= 1
                 guessed_character.append(guess)
             else:
                 print("Well done,", guess, "it's a correct guess!")
@@ -41,23 +45,23 @@ def play_game(word):
                 print("You already tried that character", guess)
             elif guess != word:
                 print(guess, "is not the team.")
-                tries -= 1
+                lives -= 1
                 guessed_teams.append(guess)
             else:
                 guessed = True
                 word_completion = word
         else:
             print("Not a valid guess.")
-        print(display_hangman(tries))
+        print(display_hangman(lives))
         print(word_completion)
         print("\n")
     if guessed:
         print("Congrats, you got the right team! You win!")
     else:
-        print("Sorry, you ran out of tries. The team was " + word + ". Maybe next time!")
+        print("Sorry, you ran out of lives. The team was " + word + ". Maybe next time!")
 
 
-def display_hangman(tries):
+def display_hangman(lives):
     stages = [  # final state: head, torso, both arms, and both legs
                 """
                    --------
@@ -129,7 +133,7 @@ def display_hangman(tries):
                    -
                 """
     ]
-    return stages[tries]
+    return stages[lives]
 
 
 def main():
