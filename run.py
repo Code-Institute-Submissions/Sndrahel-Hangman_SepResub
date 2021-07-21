@@ -53,7 +53,8 @@ def play_game(secret_team):
                     team_is_guessed = True
         else:
             print("\nNot a valid guess.")
-        print("\nYou have", game_life, "life left and you have used these characters: ", " ".join(guessed_character))
+        print("\nYou have", game_life, "life left")
+        print("You have used these characters: ", " ".join(guessed_character))
         print(display_hangman(game_life))
         print("Current team: ", team_completion)
         print("\n")
