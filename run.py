@@ -20,7 +20,7 @@ def get_random_team():
 
 def play_game(secret_team):
     guess_completion = "_" * len(secret_team)
-    guessed = False
+    team_is_guessed = False
     guessed_character = []
     game_life = 9
     show_current_score()
@@ -30,7 +30,7 @@ def play_game(secret_team):
     print(guess_completion)
     print("\n")
 
-    while not guessed and game_life > 0:
+    while not team_is_guessed and game_life > 0:
         guess = input("Please guess a character: ").upper()
         if len(guess) == 1 and guess.isalnum():
             if guess in guessed_character:
@@ -43,18 +43,18 @@ def play_game(secret_team):
                 print("Well done,", guess, "it's a correct guess!")
                 guessed_character.append(guess)
                 word_as_list = list(guess_completion)
-                indices = [i for i, letter in enumerate(secret_team) if letter == guess]  # or letter == '_'
+                indices = [i for i, letter in enumerate(secret_team) if letter == guess or letter == '_']  # or letter == '_'
                 for index in indices:
                     word_as_list[index] = guess
                 guess_completion = "".join(word_as_list)
                 if "_" not in guess_completion:
-                    guessed = True
+                    team_is_guessed = True
         else:
             print("Not a valid guess.")
         print(display_hangman(game_life))
         print(guess_completion)
         print("\n")
-    if guessed:
+    if team_is_guessed:
         global games_won
         games_won += 1
         print("Congrats, you got the right team! You are awesome!")
