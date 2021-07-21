@@ -26,7 +26,8 @@ def play_game(secret_team):
     game_life = 9
     show_current_score()
 
-    print("Welcome to Sport Teams Hangman. \nTry and guess the team before the man is hung!")
+    print("Welcome to Sport Teams Hangman.")
+    print("Try and guess the team before the man is hung!")
     print("Let's play a game!")
     print(display_hangman(game_life))
     print("Current team: ", team_completion)
@@ -53,7 +54,7 @@ def play_game(secret_team):
                     team_is_guessed = True
         else:
             print("\nNot a valid guess.")
-        print("\nYou have", game_life, "life left")
+        print("\nYou have", game_life, "lives left")
         print("You have used these characters: ", " ".join(guessed_character))
         print(display_hangman(game_life))
         print("Current team: ", team_completion)
@@ -65,99 +66,100 @@ def play_game(secret_team):
     else:
         global games_lost
         games_lost += 1
-        print("Sorry, you ran out of lives. The team was " + secret_team + ". Maybe next time!")
+        print("Game Over! You ran out of lives.")
+        print("The team was " + secret_team + ". Maybe next time!")
 
 
 def display_hangman(game_life):
     stages = [  # stage 10, final state: Game over
         """
-           x------x
-           |      |
-           |      O
-           |     \\|/
-           |      |
-           |     / \\
-        ___|___
+                x------x
+                |      |
+                |      O
+                |     \\|/
+                |      |
+                |     / \\
+             ___|___
         """,
         # stage 9
         """
-           x------x
-           |      |
-           |      O
-           |     \\|/
-           |      |
-           |     /
-        ___|___
+                x------x
+                |      |
+                |      O
+                |     \\|/
+                |      |
+                |     /
+             ___|___
         """,
         # stage 8
         """
-           x------x
-           |      |
-           |      O
-           |     \\|/
-           |      |
-           |
-        ___|___
+                x------x
+                |      |
+                |      O
+                |     \\|/
+                |      |
+                |
+             ___|___
         """,
         # stage 7
         """
-           x------x
-           |      |
-           |      O
-           |     \\|
-           |      |
-           |
-        ___|___
+                x------x
+                |      |
+                |      O
+                |     \\|
+                |      |
+                |
+             ___|___
         """,
         # stage 6
         """
-           x------x
-           |      |
-           |      O
-           |      |
-           |      |
-           |
-        ___|___
+                x------x
+                |      |
+                |      O
+                |      |
+                |      |
+                |
+             ___|___
         """,
         # stage 5
         """
-           x------x
-           |      |
-           |      O
-           |
-           |
-           |
-        ___|___
+                x------x
+                |      |
+                |      O
+                |
+                |
+                |
+             ___|___
         """,
         # stage 4
         """
-           x------x
-           |      |
-           |
-           |
-           |
-           |
-        ___|___
+                x------x
+                |      |
+                |
+                |
+                |
+                |
+             ___|___
         """,
         # stage 3
         """
-           x------x
-           |
-           |
-           |
-           |
-           |
-        ___|___
+                x------x
+                |
+                |
+                |
+                |
+                |
+             ___|___
         """,
         # stage 2
         """
 
-           |
-           |
-           |
-           |
-           |
-        ___|___
+                |
+                |
+                |
+                |
+                |
+             ___|___
         """,
         # stage 1, initial state
         """
@@ -167,7 +169,7 @@ def display_hangman(game_life):
 
 
 
-        ___ ___
+             ___ ___
         """
     ]
     return stages[game_life]

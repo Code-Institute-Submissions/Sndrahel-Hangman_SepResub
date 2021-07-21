@@ -110,7 +110,7 @@ teams_list = [
     "dallas stars",
     "minnesota wild",
     "nashville predators",
-    "st. louis blues",
+    "st louis blues",
     "winnipeg jets",
     "calgary flames",
     "edmonton oilers",
