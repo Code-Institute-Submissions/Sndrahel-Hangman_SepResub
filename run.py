@@ -11,6 +11,7 @@ def show_current_score():
     print("  Score")
     print("  -----")
     print("  Won: " + str(games_won) + "    Lost: " + str(games_lost))
+    print("\n")
 
 
 def get_random_team():
@@ -19,40 +20,42 @@ def get_random_team():
 
 
 def play_game(secret_team):
-    guess_completion = "_" * len(secret_team)
+    team_completion = "_" * len(secret_team)
     team_is_guessed = False
     guessed_character = []
     game_life = 9
     show_current_score()
 
-    print("Welcome to Sport Teams Hangman. Try and guess the team before the man is hung! Let's play a game!")
+    print("Welcome to Sport Teams Hangman. \nTry and guess the team before the man is hung!")
+    print("Let's play a game!")
     print(display_hangman(game_life))
-    print(guess_completion)
+    print("Current team: ", team_completion)
     print("\n")
 
     while not team_is_guessed and game_life > 0:
-        guess = input("Please guess a character: ").upper()
+        guess = input("Guess a character: ").upper()
         if len(guess) == 1 and guess.isalnum():
             if guess in guessed_character:
-                print("You already guessed that character", guess)
+                print("\nYou already guessed that character", guess)
             elif guess not in secret_team:
-                print(guess, "is not a correct guess.")
+                print("\n", guess, "is not a correct guess.")
                 game_life -= 1
                 guessed_character.append(guess)
             else:
-                print("Well done,", guess, "it's a correct guess!")
+                print("\nWell done,", guess, "it's a correct guess!")
                 guessed_character.append(guess)
-                word_as_list = list(guess_completion)
-                indices = [i for i, letter in enumerate(secret_team) if letter == guess or letter == '_']  # or letter == '_'
+                word_as_list = list(team_completion)
+                indices = [i for i, letter in enumerate(secret_team) if letter == guess]  # or letter == '_'
                 for index in indices:
                     word_as_list[index] = guess
-                guess_completion = "".join(word_as_list)
-                if "_" not in guess_completion:
+                team_completion = "".join(word_as_list)
+                if "_" not in team_completion:
                     team_is_guessed = True
         else:
-            print("Not a valid guess.")
+            print("\nNot a valid guess.")
+        print("\nYou have", game_life, "life left and you have used these characters: ", " ".join(guessed_character))
         print(display_hangman(game_life))
-        print(guess_completion)
+        print("Current team: ", team_completion)
         print("\n")
     if team_is_guessed:
         global games_won
