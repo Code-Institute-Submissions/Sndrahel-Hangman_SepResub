@@ -198,7 +198,7 @@ def display_hangman(game_life):
 def main():
     secret_team = get_random_team()
     play_game(secret_team)
-    while input("Play Again? (Y/N) ").upper() == "Y":
+    while input("Play Again? (Y/N) \n").upper() == "Y":
         secret_team = get_random_team()
         play_game(secret_team)
 
