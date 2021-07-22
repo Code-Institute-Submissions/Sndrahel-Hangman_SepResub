@@ -36,7 +36,7 @@ def play_game(secret_team):
     print("Try and guess the team before the man is hung!")
     print("Let's play a game!")
     print(display_hangman(game_life))
-    print("Current team: ", team_completion)
+    print("Current team: ", "".join(team_completion))
     print("\n")
 
     while not team_is_guessed and game_life > 0:
@@ -52,7 +52,7 @@ def play_game(secret_team):
                 print("\nWell done,", guess, "it's a correct guess!")
                 guessed_character.append(guess)
                 word_as_list = list(team_completion)
-                indices = [i for i, letter in enumerate(secret_team) if letter == guess]  # or letter == '_'
+                indices = [i for i, letter in enumerate(secret_team) if letter == guess]
                 for index in indices:
                     word_as_list[index] = guess
                 team_completion = "".join(word_as_list)
@@ -63,7 +63,7 @@ def play_game(secret_team):
         print("\nYou have", game_life, "lives left")
         print("You have used these characters: ", " ".join(guessed_character))
         print(display_hangman(game_life))
-        print("Current team: ", team_completion)
+        print("Current team: ", "".join(team_completion))
         print("\n")
     if team_is_guessed:
         global games_won
