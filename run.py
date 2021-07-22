@@ -20,11 +20,17 @@ def get_random_team():
 
 
 def play_game(secret_team):
-    team_completion = "_" * len(secret_team)
-    team_is_guessed = False
+    team_is_guessed = False  # game over
     guessed_character = []
     game_life = 9
     show_current_score()
+
+    team_completion = []
+    for i in range(0, len(secret_team)):
+        if secret_team[i] == " ":
+            team_completion.append(" ")
+        else:
+            team_completion.append("_")
 
     print("Welcome to Sport Teams Hangman.")
     print("Try and guess the team before the man is hung!")
