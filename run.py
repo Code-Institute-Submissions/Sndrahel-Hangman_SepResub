@@ -1,3 +1,15 @@
+"""
+Hangman game.
+
+Game code and logic has been adapded and mainly copied from:
+https://github.com/kiteco/python-youtube-code/blob/master/build-hangman-in-python/hangman.py
+https://www.youtube.com/watch?v=m4nEnsavl6w
+
+Game score function and variables has been copied from:
+https://gist.github.com/jverbosky/a2e83d75bae7234e2342b3e6cfa72efe
+
+"""
+
 import random
 from teams import teams_list
 
@@ -14,6 +26,7 @@ def show_current_score():
     print("\n")
 
 
+#  Statment to pick random team from teams_list
 def get_random_team():
     secret_team = random.choice(teams_list)
     return secret_team.upper()
@@ -25,6 +38,7 @@ def play_game(secret_team):
     game_life = 9
     show_current_score()
 
+#  Variables to create an empty list of letters/characters in the team
     team_completion = []
     for i in range(0, len(secret_team)):
         if secret_team[i] == " ":
@@ -46,7 +60,7 @@ def play_game(secret_team):
                 print("\nYou already guessed that character", guess)
             elif guess not in secret_team:
                 print("\n", guess, "is not a correct guess.")
-                game_life -= 1
+                game_life -= 1  # takes away 1 life when wrong
                 guessed_character.append(guess)
             else:
                 print("\nWell done,", guess, "it's a correct guess!")
