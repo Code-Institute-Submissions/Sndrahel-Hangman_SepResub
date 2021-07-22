@@ -40,7 +40,7 @@ def play_game(secret_team):
     print("\n")
 
     while not team_is_guessed and game_life > 0:
-        guess = input("Guess a character: ").upper()  # check code /n needed to deploy in heroku
+        guess = input("Guess a character: \n").upper()
         if len(guess) == 1 and guess.isalnum():
             if guess in guessed_character:
                 print("\nYou already guessed that character", guess)
