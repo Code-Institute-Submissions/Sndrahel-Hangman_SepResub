@@ -1,5 +1,8 @@
 """
-Hangman game.
+Sport Teams Hangman is a word guessing game.
+
+It´s up to the player to identify a hidden sport team.
+The sport teams are from USA leagues: NBA, NFL, NHL and NPSL.
 
 Game code and logic has been adapded and mainly copied from:
 https://github.com/kiteco/python-youtube-code/blob/master/build-hangman-in-python/hangman.py
