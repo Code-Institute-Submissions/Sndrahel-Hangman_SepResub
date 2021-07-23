@@ -28,9 +28,11 @@ In each round, the player guesses a character (number or letter): if it's presen
 
 ![Game Launch](assets/mockups/game_launch.png)
 
-The layout is simple with a card deck on a plain background that allow the user to focus on the game cards. The card deck contains 16 cards in 4x4 style grid. The card deck has been styled with some shadow to provide a minor 3-D effect. 
-A score area is positioned above the deck and it contain a move counter, a timer and a mute button.
-Below the deck is a reset button and a information button of how to play the game.  
+When launching the game a score board and welcome text is displayed.
+The welcome text provide the user with a short information on how to play the game. 
+A initial state from where the hangman will display is prewritten from start.
+The secret team is positioned under the hangman and it contains some blank lines (depending on how many words).
+Below the current team is a input where the user can guess a character for the secret team. 
 
 
 #### Correct Guess
@@ -111,15 +113,7 @@ ___
 
 - Laptop MacOS Big Sur (ver 11.4):
   - Google Chrome
-  - Safari Browser
-  - Firefox
 
-- Mobile device Huawei P30 Pro:
-  - Google Chrome
-  - Huawei Browser
-
-- Mobile device IPhone 11:
-  - Safari Browser
 
 #### With each device and browser the following steps were taken:
 - Test if the game card are clickable and behaves as expected.
