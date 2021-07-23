@@ -5,6 +5,7 @@ Python - Milstone project 3 for Code Institute
 ![Responsive Mockup](assets/mockups/mockup.png)  
 
 [Link to game site](https://sporthangman.herokuapp.com/)
+
 ---
 ## Project Summary
 
@@ -19,11 +20,12 @@ In each round, the player guesses a character (number or letter): if it's presen
 [Wireframes](assets/wireframes/wireframe.png)
 
 ---
+---
 ## Features:
 ---
 
 ### Existing Features:
-
+---
 #### Game Launch
 
 ![Game Launch](assets/mockups/game_launch.png)
@@ -31,58 +33,55 @@ In each round, the player guesses a character (number or letter): if it's presen
 When launching the game a score board and welcome text is displayed.
 The welcome text provide the user with a short information on how to play the game. 
 A initial state from where the hangman will display is prewritten from start.
-The secret team is positioned under the hangman and it contains some blank lines (depending on how many words).
+The guess-line positioned under the hangman contains some underscore spaces (depending on how many words and characters there's in the secret team). The blanks/underscored space will be replaced with correct characters when guessed.
+The current team is picked randomly from the teams.py file 
 Below the current team is a input where the user can guess a character for the secret team. 
 
-
+---
 #### Correct Guess
 
 ![Correct Guess](assets/mockups/correct_guess.png)
 
-- Game cards is clickable, and turn on click.
-- When there´s a match, cards will stay visible and be disabled from click.
+When a character is correctly guessed, the user will get feedback that correct character has been picked. The correct character will be added to the current team as well to a line were all "used characters" is shown.
 
 
 #### Wrong Guess
 
 ![Wrong Guess](assets/mockups/wrong_guess.png)
 
-- Reset Button resets the whole game.
-- How To Play Button pops up when clicked and contains information of how to play the game.
+When user make a wrong guess feedback will be providen that the user made a wrong guess, and a part of the hangman illustration will be added to the board, and one game-life will be withdrawn. The huessed character will be added to "used characters".
 
-
+---
 #### Win Game
 
 ![Win Game](assets/mockups/win_game.png)
 
-- Short information of how to play the game.
-- Contains a "Play Game!" button that returns to the game when clicked.
+The game is won when the user has guessed the correct team before running out of game-life/chances. One score will be added to the win-side on the scoreboard.
+The user will be asked if they want to play again. By pressing Y/N (yes/no) the user return their input. 
 
-
+---
 #### Game Over
 
 ![Game Over](assets/mockups/game_over.png)
 
-- Win modal pops up when game is completed.
-- Contains information of the total amount of moves and time it took the user to complete the game.
-- Play Again Button: Resets the game and restarts the game. 
+The game is over and the hangman is hung when the user has made totaly 9 wrong guesses. The correct word/team will be displayd for feedback to the user. And one score will be added to the lost-side on the scoreboard.
+The user will be asked if they want to play again. By pressing Y/N (yes/no) the user return their input. 
 
-
+---
 #### Score Board
 
 ![Score Board](assets/mockups/score_board.png)
 
-- Time counter counts time of how long it takes the user to complete the game. Timer starts when the first card is clicked.
-- Move counter counts the amount of moves it takes the user to complete the game. Counter starts when the first card is clicked.
-- Mute button mute all sounds in the game.
+The score board count the amount of wins and losses during a play session.
+Once the game is restarted the counts will set back to zero.
 
 ___
 ### Features Left to Implement:
+- Scoreboard that keep record of all users score.
+- A 2 player option.
+- Frontend features for a more appealing experience. 
 
-- Scoreboard that records the users score. 
-- More alternitiv to choose difficulty modes.
-
-
+---
 ----
 ## Technologies used:
 ---
@@ -96,74 +95,102 @@ ___
 - [GitHub Pages](https://sndrahel.github.io/Hangman/) - Used to deploy this site.
 - [Am I responsive](http://ami.responsivedesign.is/#) - Was used to generate a mockup for this readme.
 
-
-
+---
 ---  
 ## Testing:
 ---
+### Manual Testing:
+- Function were tested within the terminal with a print statment to ensure the game ran as designed.
+- All bugs/errors and problems that displayed during development were taken care of to make the game run as designed.
+- The game is also tested through the Heroku app.  
 
 ### Validator Testing:
-
-- [W3C HTML Validation Service](https://validator.w3.org/) - Check HTML = No errors where found.
-- [(Jigsaw) Validator](https://jigsaw.w3.org/css-validator/) - Check CSS = No errors shown.
-- [Beautify Tools](https://beautifytools.com/javascript-validator.php) - Check JS = No errors where found.
+- [PEP8 Online](http://pep8online.com/) - Check your code for PEP8 requirements. = One error where found (line-length).
 
 ### This project was tested with the following browsers: 
----
+- Laptop MacOS Big Sur (ver 11.4): Google Chrome
 
-- Laptop MacOS Big Sur (ver 11.4):
-  - Google Chrome
-
-
-#### With each device and browser the following steps were taken:
-- Test if the game card are clickable and behaves as expected.
-- Test if the timer starts at right time and keep track of time. 
-- Test if the move counter counts correct amount of moves. 
-- Test if the "How To Play Btn" works and trigger a pop up.
-- Test if the "Play Btn" close the "How To Play" modal.
-- Test if the "Reset Btn" resets the game to start again.
-- Test if the "Win Modal" pops up in the end of the game.
-- Test if the "close module" and the "Play Again Btn" works as expected.
-- Test if the "mute Btn" mutes all game sounds.
+#### The following steps were taken:
+- Test if the game starts and behaves as expected.
+- Test if the game randomly picks a team from teams_list. 
+- Test if the game replace underscores with correctly guessed characters. 
+- Test if the game contains a visible list of used characters.
+- Test if the hangman add on parts as designed.
+- Test if the game withdraw/count life as expected. 
+- Test if the win and loose function works as expected and display an option to play again.
 
 
 ---
 ### Issues / Unfixed Bugs:
-- Safari Browsers: Don´t support the function of the game, cards don´t flip as expected / or stay flipped - Not Fixed.
-- Move counter: Doesn´t count moves correctly - Not fixed.
-- Mute button: Isn´t working. Code not completed. - Not fixed. 
 ---
+- The main issues were the line lengt and the presence of whitespace. - Fixed! 
+- The other main issue I had was to complete the function that discount the blank space between multiple words. - Fixed!
+- One remaining issue is the line length on line 73. The line are over 79 characters. - Not fixed.
 
-  
+--- 
+
 ---
 ## Deployment
 ---
-The site was deployed to GitHub pages using the following steps:
+This application will be deployed via [Heroku](https://id.heroku.com/)
+- Ensure all code is correct and ready for deployment.
+- Enter the following code to import the required dependencies to the requirements.txt file: 
+   ### pip3 freeze > requirements.txt
+- Heroku will use this file to import the dependencies that are required.
+- Log into Heroku or sign up for a free account.
+- Signing up, for an account and wait to accept an authentication email.
+- Navigate to Dashboard.
+- Click "New" and select "create new app" from the drop-down menu. (Found in the top right corner of the window.)
+- Provide a unique name for your application and select your region.
+- Click "Create App".
 
-- Navigate to the [GitHub Repository Pages](https://github.com/Sndrahel/Cute-Pets-Memory-Game). 
-- Go to the [Settings](https://github.com/Sndrahel/Cute-Pets-Memory-Game/settings) page and scroll down to the GitHub Page section.
-- Select the main branch and save.
-- After the page refreshes, the link to the live page will be in the GitHub Page section.
 
-To run this project locally:
+## Setting up Heroku App
+---
+- Navigate to "Settings" and scroll down to "Buildpacks".
+- Click "Buildpacks" and then click both "python" and "node.js"(node.js is needed for the mock terminal.)
+- Take note of the order and ensure that the python build pack is above the node.js build pack, You can click and drag the packs to re-arrange them.
 
-- Navigate to the [GitHub Repository Pages](https://github.com/Sndrahel/Cute-Pets-Memory-Game). 
-- Click on the code and copy the URL to clone with HTTPS.
-- In a terminal with git installed navigate to the directory where you want the repository to be cloned.
-- Run 'git clone' followed by the URL you copied:
-- ```git clone https://github.com/Sndrahel/Cute-Pets-Memory-Game.git```
+## Deployment through Heroku
+---
+- Navigate to the "Deploy" section.
+- Scroll down to "Deployment Method" and select "GitHub".
+- Authorize the connection of Heroku to GitHub.
+- Search for your GitHub repository name, and select the correct repository.
+- For Deployment there are two options, Automatic Deployments or Manual.
+- Automatic Deployment: This will prompt Heroku to re-build your app each time you push your code to GitHub.
+- Manual Deployment: This will only prompt Heroku to build your app when you manually tell it to do so.
+- Ensure the correct branch is selected "master/Main", and select a deployment method. For this project I chose Manual Deployment.
 
-  
+## How to Fork the respository
+---
+- Log into GitHub.
+- In Github go to (https://github.com/Sndrahel/Hangman).
+- In the top right hand corner click "Fork".
+- A copy of the repository will then be added to your repositories page.
+
+## How to clone the repository
+---
+- Go to the GitHub repository.
+- Locate the Code button which is to the left of the green gitpod button and click it.
+- Select if you prefer to clone using HTTPS, SSH, or Github CLI and click the copy button to copy the URL to your clipboard.
+- Open Git Bash.
+- Change the current working directory to the one where you want the cloned directory.
+- Type git clone and paste the URL from the clipboard.
+- Press Enter to create your local clone.
+
+--- 
 ---
 ## Credits
 ---
 
-#### Content:
-
-- [Free Code Camp](https://marina-ferreira.github.io/tutorials/js/memory-game/) - Inspiraton of the code and styling are through out inspired and taken from this tutorial. 
-- [Youtube](https://www.youtube.com/watch?v=ZniVgo8U7ek) - Inspiraton of the code and styling are through out inspired and taken from this tutorial.
-- [Scotch](https://scotch.io/tutorials/how-to-build-a-memory-matching-game-in-javascript) - Inspiration of the code was also taken from this tutorial.
-    
+### Content:
+- [Youtube](https://www.youtube.com/watch?v=m4nEnsavl6w) - The code as well as the hangman artwork are through out inspired and taken from this tutorial.  
+- [GitHub](https://gist.github.com/jverbosky/a2e83d75bae7234e2342b3e6cfa72efe) - Inspiraton of the score system are taken from this site.
+- [Stack Overflow](https://stackoverflow.com/) - Was used to find solutions and debugging.
+- [Wikipedia](https://www.wikipedia.org/) - Were used to search and collect teams to the teams.py file.
+- [GitHub](https://github.com/moirahartigan/the-scarecrows-wedding-portfolio-3/blob/main/README.md) - Inspiration of structure for this README file were adapted from this site. 
+___    
 ---
 ## Acknowledgments:
 

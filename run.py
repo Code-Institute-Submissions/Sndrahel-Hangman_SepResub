@@ -51,6 +51,7 @@ def play_game(secret_team):
 
     print("Welcome to Sport Teams Hangman.")
     print("Try and guess the team before the man is hung!")
+    print("Teams are from USA leagues: NBA, NFL, NHL and NPSL.")
     print("Let's play a game!")
     print(display_hangman(game_life))
     print("Current team: ", "".join(team_completion))
