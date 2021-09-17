@@ -59,7 +59,8 @@ def play_game(secret_team):
     print("\n")
 
     while not team_is_guessed and game_life > 0:
-        guess = input("Guess a character: \n").upper()
+        guess = input("Guess a character (or type \"quit\" to end this "
+                      "round, counts as a loss): \n").upper()
         if len(guess) == 1 and guess.isalnum():
             if guess in guessed_character:
                 print("\nYou already guessed that character", guess)
@@ -68,15 +69,17 @@ def play_game(secret_team):
                 game_life -= 1  # takes away 1 life when wrong
                 guessed_character.append(guess)
             else:
-                print("\nWell done,", guess, "it's a correct guess!")
                 guessed_character.append(guess)
-                word_as_list = list(team_completion)
-                indices = [i for i, letter in enumerate(secret_team) if letter == guess]
-                for index in indices:
-                    word_as_list[index] = guess
-                team_completion = "".join(word_as_list)
+                team_completion, l_count = fill_blanks(guess, team_completion,
+                                                       secret_team)
+                print("\nWell done,", guess, "is a correct guess!")
+                print("You filled out", l_count,
+                      "letter" if l_count < 2 else "letters",
+                      "with that guess!")
                 if "_" not in team_completion:
                     team_is_guessed = True
+        elif guess == "QUIT":
+            break
         else:
             print("\nNot a valid guess.")
         print("\nYou have", game_life, "lives left")
@@ -91,8 +94,11 @@ def play_game(secret_team):
     else:
         global games_lost
         games_lost += 1
-        print("Game Over! You ran out of lives.")
-        print("The team was " + secret_team + ". Maybe next time!")
+        if game_life == 0:
+            print("Game Over! You ran out of lives.")
+            print("The team was " + secret_team + ". Maybe next time!")
+        else:
+            print("You quit the round, it counts as a loss.")
 
 
 def display_hangman(game_life):
@@ -198,6 +204,16 @@ def display_hangman(game_life):
         """
     ]
     return stages[game_life]
+
+
+def fill_blanks(guess, guess_progress, secret_team):
+    c = 0
+    guess_progress = list(guess_progress)
+    for i, letter in enumerate(secret_team):
+        if letter == guess:
+            guess_progress[i] = guess
+            c += 1
+    return "".join(guess_progress), c
 
 
 def main():
