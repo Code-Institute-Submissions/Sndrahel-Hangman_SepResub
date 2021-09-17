@@ -125,7 +125,7 @@ ___
 ---
 - The main issues were the line lengt and the presence of whitespace. - Fixed! 
 - The other main issue I had was to complete the function that discount the blank space between multiple words. - Fixed!
-- One remaining issue is the line length on line 73. The line are over 79 characters. - Not fixed.
+- One remaining issue is the line length on line 73. The line are over 79 characters. - Fixed!
 
 --- 
 
