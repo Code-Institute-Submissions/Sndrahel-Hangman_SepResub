@@ -195,4 +195,5 @@ ___
 ## Acknowledgments:
 
 - Nishant Kumar: My Code Institute mentor who guided me through this process and shared a lot of valuable knowledge.
+- Alekks Henning for your support and advice.
 
