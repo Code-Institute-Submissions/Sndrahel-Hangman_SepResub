@@ -14,6 +14,7 @@ https://gist.github.com/jverbosky/a2e83d75bae7234e2342b3e6cfa72efe
 """
 
 import random
+import time
 from teams import teams_list
 
 #  Variables to hold score (games won and lost)
@@ -202,9 +203,17 @@ def display_hangman(game_life):
 def main():
     secret_team = get_random_team()
     play_game(secret_team)
-    while input("Play Again? (Y/N) \n").upper() == "Y":
-        secret_team = get_random_team()
-        play_game(secret_team)
+    while True:
+        choice = input("Play Again? (Y/N) \n").upper()
+        if choice == "Y":
+            secret_team = get_random_team()
+            play_game(secret_team)
+        elif choice == "N":
+            print("Thanks for playing!")
+            time.sleep(3)
+            break
+        else:
+            print("Input was not valid, try again!")
 
 
 if __name__ == "__main__":
